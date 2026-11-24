@@ -37,7 +37,7 @@ function getData() {
       contactLinkedin: 'https://www.linkedin.com/in/ihdawafa/',
       contactItch:     'https://ihdawafa.itch.io/',
       footerName:      'Wapa',
-      avatar:          'https://media.licdn.com/dms/image/v2/D5603AQHBQsgDtLNZfw/profile-displayphoto-scale_400_400/B56aINfaYzG4Ag-/0/1795522668829?e=1796860800&v=beta&t=Cck0urPOO__LxfBtZBnjV_sh3Cmm2Zc3RK7KhbUrClc',
+      avatar:          'images/pp-wapa.jpg',
     },
     skills: [
       { label: 'Unity',            emoji: '🎮', color: 'chip-yellow' },
@@ -143,7 +143,11 @@ function applyProfile() {
   if (navLi)    navLi.href    = p.contactLinkedin;
   if (navItch)  navItch.href  = p.contactItch;
 
-  // Avatars
+  // Avatars (otomatis ganti ke foto lokal pp-wapa.jpg jika link lama kedaluwarsa)
+  if (!p.avatar || p.avatar.includes('licdn.com')) {
+    p.avatar = 'images/pp-wapa.jpg';
+    saveData(STATE);
+  }
   const img1 = document.getElementById('avatarImg1');
   const img2 = document.getElementById('avatarImg2');
   const ph1  = document.getElementById('polaroidPlaceholder1');
@@ -151,11 +155,12 @@ function applyProfile() {
 
   [img1, img2].forEach(img => {
     if (!img) return;
-    if (p.avatar) { img.src = p.avatar; img.classList.remove('hidden'); }
-    else           { img.classList.add('hidden'); }
+    img.src = p.avatar;
+    img.onerror = () => { img.src = 'images/avatar-placeholder.png'; };
+    img.classList.remove('hidden');
   });
-  if (ph1) ph1.classList.toggle('hidden', !!p.avatar);
-  if (ph2) ph2.classList.toggle('hidden', !!p.avatar);
+  if (ph1) ph1.classList.add('hidden');
+  if (ph2) ph2.classList.add('hidden');
 
   // Footer year
   const fy = document.getElementById('footerYear');
@@ -337,10 +342,14 @@ function renderPanel() {
     img.src = proj.image;
     img.alt = proj.title + ' screenshot';
     img.loading = 'lazy';
-    img.onerror = () => img.replaceWith(makePanelPlaceholder(cat));
+    img.onerror = () => { img.src = 'images/project-placeholder.png'; };
     imgPanel.appendChild(img);
   } else {
-    imgPanel.appendChild(makePanelPlaceholder(cat));
+    const img = document.createElement('img');
+    img.src = 'images/project-placeholder.png';
+    img.alt = proj.title + ' screenshot';
+    img.loading = 'lazy';
+    imgPanel.appendChild(img);
   }
 
   container.appendChild(imgPanel);
