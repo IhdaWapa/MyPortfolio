@@ -168,7 +168,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .nav-icon-pink { background: var(--pink); }
 
 .nav-contact-btn {
-  display: inline-flex;
+  display: none; /* Sembunyikan untuk umum */
   align-items: center;
   gap: .35rem;
   padding: .35rem .9rem;
@@ -180,6 +180,10 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
   color: var(--ink);
   border: 1.5px solid var(--ink);
   transition: background .15s, color .15s, transform .15s var(--ease-spring);
+}
+/* Hanya tampil jika pemilik web mengaktifkan mode admin */
+body.is-admin .nav-contact-btn {
+  display: inline-flex;
 }
 .nav-contact-btn:hover { background: var(--ink); color: var(--bg); transform: scale(1.04); }
 .nav-contact-btn[aria-pressed="true"] {

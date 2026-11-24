@@ -565,9 +565,22 @@ addSkillBtn?.addEventListener('click', () => {
 });
 
 /* ================================================================
-   KEYBOARD
+   KEYBOARD & SECRET ADMIN SHORTCUT
    ================================================================ */
+// Cek URL params: ?admin=true atau penyimpanan admin lokal
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('admin') === 'true' || localStorage.getItem('is_admin') === 'true') {
+  document.body.classList.add('is-admin');
+}
+
 document.addEventListener('keydown', e => {
+  // Shortcut Rahasia Pemilik: Ctrl + Shift + E untuk menampilkan/menyembunyikan tombol EDIT
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+    e.preventDefault();
+    const isAdmin = document.body.classList.toggle('is-admin');
+    localStorage.setItem('is_admin', isAdmin ? 'true' : 'false');
+  }
+
   if (e.key === 'Escape') {
     if (!projectModal.classList.contains('hidden')) closeProjectModal();
     if (!profileModal.classList.contains('hidden')) closeProfileModal();
