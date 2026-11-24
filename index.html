@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Game Tech Student</title>
+  <meta name="description" content="Portfolio mahasiswa teknologi game — project 3D, game, dan desain grafis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="mainNav" aria-label="Navigasi utama">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="nav-dot" aria-hidden="true"></div>
+        <a href="#hero" class="nav-pill nav-pill-active" aria-label="Home">HOME</a>
+        <a href="#about" class="nav-pill">ABOUT</a>
+        <a href="#projects" class="nav-pill">
+          <span class="nav-pill-icon" aria-hidden="true"></span> PROYEK
+        </a>
+        <a href="#contact" class="nav-pill">
+          <span class="nav-pill-icon" aria-hidden="true"></span> PLAYGROUND
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="mailto:email@example.com" class="nav-icon-btn" id="navEmailBtn" aria-label="Email" title="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" fill="none" stroke="#fff" stroke-width="2" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="nav-icon-btn nav-icon-teal"
+          id="navLinkedinBtn" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <a href="https://namauser.itch.io" target="_blank" rel="noopener" class="nav-icon-btn nav-icon-pink"
+          id="navItchBtn" aria-label="itch.io">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm4 11H8v-2h2v-3H8v-2h4v5h4v2z" />
+          </svg>
+        </a>
+        <button class="nav-contact-btn" id="editToggle" aria-pressed="false">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            aria-hidden="true">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+          EDIT
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid-wrap">
+
+      <!-- Floating sticker badges -->
+      <div class="sticker sticker-made-things reveal" data-delay="200">🎮 BIKIN GAME</div>
+      <div class="sticker sticker-sweat-details reveal" data-delay="300">✨ PERFEKSIONIS</div>
+
+      <!-- Name block -->
+      <div class="hero-name-block reveal" data-delay="0">
+        <span class="hero-eyebrow caveat">my name is</span>
+        <div class="hero-name-box">
+          <h1 class="hero-name editable" data-field="heroName" contenteditable="false">NAMA KAMU</h1>
+        </div>
+      </div>
+
+      <!-- Sub labels row -->
+      <div class="hero-sub-row reveal" data-delay="150">
+        <span class="label-pill label-yellow editable" data-field="heroRole" contenteditable="false">Game
+          Developer</span>
+        <span class="hero-open-text">● OPEN TO MAGANG &amp; KOLABORASI</span>
+        <span class="label-pill label-green editable" data-field="heroCity" contenteditable="false">Indonesia</span>
+      </div>
+
+      <!-- Polaroid avatars -->
+      <div class="hero-polaroid hero-polaroid-left reveal" data-delay="400">
+        <div class="polaroid-inner" id="polaroidLeft">
+          <div class="polaroid-placeholder" id="polaroidPlaceholder1">👤</div>
+          <img id="avatarImg1" class="polaroid-img hidden" alt="Foto profil" />
+        </div>
+      </div>
+      <div class="hero-polaroid hero-polaroid-right reveal" data-delay="500">
+        <div class="polaroid-inner">
+          <div class="polaroid-placeholder">🎮</div>
+        </div>
+      </div>
+
+      <!-- Big statement -->
+      <div class="hero-statement reveal" data-delay="100">
+        <h2>
+          <span class="editable" data-field="heroStatement" contenteditable="false">Saya bikin game yang terasa
+            <em>hidup</em></span>
+          <span class="statement-icon">🕹️</span>
+        </h2>
+        <a href="#contact" class="hero-cta-btn">
+          <span class="cta-icon" aria-hidden="true">★</span> HUBUNGI SAYA
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about-section" id="about">
+    <!-- Header title -->
+    <div class="about-header reveal" data-delay="0">
+      <span class="about-title-badge">ABOUT ME</span>
+    </div>
+
+    <!-- Main 2-column layout (Left: Big Polaroid, Right: Info blocks) -->
+    <div class="about-main-grid">
+
+      <!-- Left Column: Big Polaroid Card -->
+      <div class="about-left-col reveal" data-delay="100">
+        <div class="about-polaroid-card">
+          <div class="about-tape-deco" aria-hidden="true"></div>
+          <div class="polaroid-inner large-polaroid">
+            <div class="polaroid-placeholder" id="aboutPlaceholder">🧑‍💻</div>
+            <img id="avatarImg2" class="polaroid-img hidden" alt="Foto about" />
+          </div>
+          <!-- Sticker Nametag -->
+          <div class="polaroid-nametag">
+            <span class="nametag-top">Hello</span>
+            <span class="nametag-sub">my name is</span>
+            <span class="nametag-name caveat editable" data-field="heroName" contenteditable="false">Nama Kamu</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Info blocks (Greeting/Bio, Pendidikan, Pengalaman) -->
+      <div class="about-right-col reveal" data-delay="150">
+
+        <!-- Intro Block -->
+        <div class="about-block">
+          <h3 class="about-block-title">HALO! 👋</h3>
+          <p class="about-body editable" data-field="aboutText" contenteditable="false">
+            Saya mahasiswa Teknologi Game semester 5 yang terlalu excited soal game design. ✨ Saya peduli detail kecil,
+            edge case yang sering dilupakan, dan bikin karya yang beneran bikin orang senang. 🎯
+          </p>
+        </div>
+
+        <!-- Education Block -->
+        <div class="about-block">
+          <h3 class="about-block-title">PENDIDIKAN</h3>
+          <ul class="about-timeline-list">
+            <li>
+              <span class="timeline-year">2024 — Sekarang</span>
+              <span class="timeline-detail">Mahasiswa Teknologi Game (Semester 5)</span>
+            </li>
+            <li>
+              <span class="timeline-year">2022 — 2024</span>
+              <span class="timeline-detail">Peminatan Game Dev, 3D Art &amp; Interactive Media</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Experience / Focus Block -->
+        <div class="about-block">
+          <h3 class="about-block-title">PENGALAMAN &amp; MINAT</h3>
+          <ul class="about-timeline-list">
+            <li>
+              <span class="timeline-year">2026</span>
+              <span class="timeline-detail">Aktif mencari tempat magang / internship Game Dev &amp; 3D</span>
+            </li>
+            <li>
+              <span class="timeline-year">2025</span>
+              <span class="timeline-detail">Rilis game indie di itch.io &amp; Game Jam project</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Section: Skills categorized (Soft Skills & Hard Skills) -->
+    <div class="about-skills-section reveal" data-delay="200">
+      
+      <!-- Soft Skills Row -->
+      <div class="skill-category-group">
+        <h4 class="skill-category-title">SOFT SKILLS</h4>
+        <div class="skill-tags-wrap">
+          <span class="skill-chip chip-yellow">Kreativitas <span class="chip-emoji">💡</span></span>
+          <span class="skill-chip chip-green">Problem Solving <span class="chip-emoji">🧩</span></span>
+          <span class="skill-chip chip-pink">Game Feel &amp; Juice <span class="chip-emoji">🕹️</span></span>
+          <span class="skill-chip chip-blue">Kerja Tim <span class="chip-emoji">🤝</span></span>
+          <span class="skill-chip chip-yellow">Detail-Oriented <span class="chip-emoji">🎯</span></span>
+        </div>
+      </div>
+
+      <!-- Hard Skills Row -->
+      <div class="skill-category-group">
+        <h4 class="skill-category-title">HARD SKILLS &amp; TOOLS</h4>
+        <div class="skill-tags-wrap" id="skillTags">
+          <span class="skill-chip chip-yellow">Unity <span class="chip-emoji">🎮</span></span>
+          <span class="skill-chip chip-green">Blender <span class="chip-emoji">🧊</span></span>
+          <span class="skill-chip chip-pink">Godot <span class="chip-emoji">🕹️</span></span>
+          <span class="skill-chip chip-blue">Unreal Engine <span class="chip-emoji">⚡</span></span>
+          <span class="skill-chip chip-yellow">Photoshop <span class="chip-emoji">🎨</span></span>
+          <span class="skill-chip chip-green">Illustrator <span class="chip-emoji">✏️</span></span>
+          <span class="skill-chip chip-pink">C# <span class="chip-emoji">💻</span></span>
+          <span class="skill-chip chip-blue">GDScript <span class="chip-emoji">🐍</span></span>
+        </div>
+        <button class="add-skill-btn hidden edit-only" id="addSkillBtn">+ Tambah Skill</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="projects-section" id="projects">
+    <!-- Tab bar -->
+    <div class="proj-tabs" id="projTabs" role="tablist" aria-label="Navigasi proyek">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Active project panel -->
+    <div class="proj-panel" id="projPanel" role="tabpanel">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Add project (edit mode) -->
+    <div class="add-project-wrap hidden edit-only">
+      <button class="add-proj-btn" id="addProjectBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          aria-hidden="true">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+        </svg>
+        Tambah Proyek Baru
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-tape contact-tape-left" aria-hidden="true"></div>
+      <div class="contact-tape contact-tape-right" aria-hidden="true"></div>
+      <div class="contact-box">
+        <span class="contact-eyebrow caveat">let's talk!</span>
+        <h2 class="contact-title">Siap buat hal keren bareng? 🚀</h2>
+        <p class="contact-body editable" data-field="contactLead" contenteditable="true">
+          Lagi cari magang atau kolaborasi? Langsung kontak saya!
+        </p>
+        <div class="contact-links">
+          <a href="mailto:email@example.com" class="contact-chip chip-dark" id="emailLink">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,12 2,6" />
+            </svg>
+            <span class="editable" data-field="contactEmail" contenteditable="false">email@example.com</span>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-chip chip-teal"
+            id="linkedinLink">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            <span class="editable" data-field="contactLinkedin" contenteditable="false">LinkedIn</span>
+          </a>
+          <a href="https://namauser.itch.io" target="_blank" rel="noopener" class="contact-chip chip-pink"
+            id="itchLink">
+            <span>🎮</span>
+            <span class="editable" data-field="contactItch" contenteditable="false">itch.io</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p class="caveat">
+      Dibuat dengan ❤️ oleh
+      <span class="editable" data-field="footerName" contenteditable="false">Nama Kamu</span>
+      · <span id="footerYear"></span>
+    </p>
+  </footer>
+
+  <!-- ===== MODALS ===== -->
+
+  <!-- Project Modal -->
+  <div class="modal-overlay hidden" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Tutup">✕</button>
+      <h3 id="modalTitle">Tambah Proyek</h3>
+      <form id="projectForm" novalidate>
+        <input type="hidden" id="editIndex" value="" />
+        <div class="form-group">
+          <label for="projTitle">Judul Proyek <span aria-hidden="true">*</span></label>
+          <input type="text" id="projTitle" placeholder="Contoh: Dungeon Crawler 3D" required />
+        </div>
+        <div class="form-group">
+          <label for="projCategory">Kategori <span aria-hidden="true">*</span></label>
+          <select id="projCategory" required>
+            <option value="">— Pilih —</option>
+            <option value="3d">3D</option>
+            <option value="game">Game (itch.io)</option>
+            <option value="design">Desain Grafis</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="projDate">Tanggal</label>
+          <input type="text" id="projDate" placeholder="Jan 2026" />
+        </div>
+        <div class="form-group">
+          <label for="projDesc">Deskripsi</label>
+          <textarea id="projDesc" rows="3" placeholder="Ceritakan singkat tentang proyeknya…"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="projLink">Link Proyek</label>
+          <input type="url" id="projLink" placeholder="https://…" />
+        </div>
+        <div class="form-group">
+          <label for="projImage">URL Gambar / Thumbnail</label>
+          <input type="url" id="projImage" placeholder="https://…" />
+        </div>
+        <div class="form-group">
+          <label for="projTags">Tags (pisah dengan koma)</label>
+          <input type="text" id="projTags" placeholder="Unity, C#, 3D" />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-modal-cancel" id="modalCancel">Batal</button>
+          <button type="submit" class="btn-modal-save">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="modal-overlay hidden" id="profileModal" role="dialog" aria-modal="true"
+    aria-labelledby="profileModalTitle">
+    <div class="modal">
+      <button class="modal-close" id="profileModalClose" aria-label="Tutup">✕</button>
+      <h3 id="profileModalTitle">Edit Profil &amp; Kontak</h3>
+      <form id="profileForm" novalidate>
+        <div class="form-group">
+          <label for="pName">Nama (tampil besar di hero)</label>
+          <input type="text" id="pName" placeholder="NAMA KAMU" />
+        </div>
+        <div class="form-group">
+          <label for="pRole">Role / Jabatan</label>
+          <input type="text" id="pRole" placeholder="Game Developer" />
+        </div>
+        <div class="form-group">
+          <label for="pCity">Kota / Lokasi</label>
+          <input type="text" id="pCity" placeholder="Jakarta, ID" />
+        </div>
+        <div class="form-group">
+          <label for="pStatement">Hero Statement</label>
+          <input type="text" id="pStatement" placeholder="Saya bikin game yang terasa hidup" />
+        </div>
+        <div class="form-group">
+          <label for="pAbout">Deskripsi About</label>
+          <textarea id="pAbout" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="pEmail">Email</label>
+          <input type="email" id="pEmail" placeholder="email@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="pLinkedin">URL LinkedIn</label>
+          <input type="url" id="pLinkedin" placeholder="https://linkedin.com/in/…" />
+        </div>
+        <div class="form-group">
+          <label for="pItch">URL itch.io</label>
+          <input type="url" id="pItch" placeholder="https://namauser.itch.io" />
+        </div>
+        <div class="form-group">
+          <label for="pAvatar">URL Foto Profil</label>
+          <input type="url" id="pAvatar" placeholder="https://…" />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-modal-cancel" id="profileCancel">Batal</button>
+          <button type="submit" class="btn-modal-save">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Toolbar -->
+  <div class="edit-toolbar hidden edit-only" id="editToolbar" role="toolbar" aria-label="Edit toolbar">
+    <span class="edit-toolbar-label">🛠 Mode Edit</span>
+    <button class="toolbar-btn" id="editProfileBtn">Edit Profil</button>
+    <button class="toolbar-btn toolbar-btn-danger" id="clearStorageBtn">Reset</button>
+    <button class="toolbar-btn toolbar-btn-save" id="saveEditBtn">✓ Selesai</button>
+  </div>
+
+  <script src="projects.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
