@@ -380,6 +380,41 @@ body.is-admin .nav-contact-btn {
 .hero-cta-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink-muted); }
 .cta-icon { font-size: .7rem; }
 
+/* Outlined variant for secondary CTA (CV button) */
+.hero-cta-btn--outline {
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--yellow);
+}
+.hero-cta-btn--outline:hover {
+  box-shadow: 5px 5px 0 var(--yellow);
+}
+.hero-cta-btn--outline:active { box-shadow: 1px 1px 0 var(--yellow); }
+
+/* CTA row: flex wrap so both buttons sit side by side */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+
+/* CV action row in contact section */
+.cv-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1.25rem;
+}
+
+/* Yellow chip variant for Preview CV */
+.chip-yellow-cv {
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.chip-yellow-cv:hover { color: var(--ink); }
+
 /* ============================================================
    ABOUT (Reference Layout: 2-Col Upper + Categorized Skills Lower)
    ============================================================ */

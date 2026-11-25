@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Wapa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* CV page specific styles */
+    .cv-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cv-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.2rem 2rem;
+      border-bottom: 2px solid var(--ink);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .cv-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--font-syne);
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: .5rem 1rem;
+      border: 2px solid var(--ink);
+      border-radius: var(--r-sm);
+      background: var(--bg);
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .cv-back-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+    .cv-back-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--ink); }
+
+    .cv-topbar-title {
+      font-family: var(--font-syne);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: .05em;
+      color: var(--ink);
+    }
+
+    .cv-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--font-syne);
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: .5rem 1.2rem;
+      border: 2px solid var(--ink);
+      border-radius: var(--r-sm);
+      box-shadow: 3px 3px 0 var(--yellow);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .cv-download-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--yellow);
+    }
+    .cv-download-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--yellow); }
+
+    .cv-main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .cv-heading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cv-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-family: var(--font-syne);
+      font-weight: 800;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      padding: .3rem .8rem;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 2px 2px 0 var(--ink);
+      text-transform: uppercase;
+    }
+
+    .cv-title {
+      font-family: var(--font-anton);
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1;
+      letter-spacing: .03em;
+    }
+
+    .cv-iframe-wrap {
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      box-shadow: 5px 5px 0 var(--ink);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .cv-iframe {
+      display: block;
+      width: 100%;
+      height: calc(100vh - 200px);
+      min-height: 500px;
+      border: none;
+    }
+
+    .cv-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      font-family: var(--font-body);
+      color: var(--ink);
+    }
+    .cv-fallback p { font-size: 1rem; }
+
+    .cv-footer {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 2px solid var(--ink);
+      margin-top: 2rem;
+      font-family: var(--font-caveat);
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 640px) {
+      .cv-topbar { padding: 1rem; }
+      .cv-main { padding: 1rem; }
+      .cv-topbar-title { display: none; }
+      .cv-iframe { height: calc(100vh - 180px); }
+    }
+  </style>
+</head>
+<body class="cv-page">
+
+  <!-- TOP BAR -->
+  <nav class="cv-topbar">
+    <a href="index.html" class="cv-back-btn">
+      ← Kembali ke Portfolio
+    </a>
+    <span class="cv-topbar-title">📄 CV — Wapa</span>
+    <a href="CV/CV%20Muhamad%20Ihda%20Hadziqul%20Wafa.pdf"
+       download="CV-Wapa.pdf"
+       class="cv-download-btn">
+      ⬇ Download CV
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="cv-main">
+    <div class="cv-heading reveal" data-delay="0">
+      <span class="cv-badge">Curriculum Vitae</span>
+      <h1 class="cv-title">CV — Wapa</h1>
+    </div>
+
+    <div class="cv-iframe-wrap reveal" data-delay="1">
+      <iframe
+        class="cv-iframe"
+        src="CV/CV%20Muhamad%20Ihda%20Hadziqul%20Wafa.pdf"
+        title="CV Wapa"
+      >
+        <div class="cv-fallback">
+          <p>Browser kamu tidak mendukung preview PDF secara langsung.</p>
+          <a href="CV/CV%20Muhamad%20Ihda%20Hadziqul%20Wafa.pdf"
+             download="CV-Wapa.pdf"
+             class="cv-download-btn">
+            ⬇ Download CV langsung
+          </a>
+        </div>
+      </iframe>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="cv-footer">
+    Dibuat dengan ❤️ oleh <strong>Wapa</strong>
+  </footer>
+
+  <script>
+    // Reuse reveal animation from main site
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      const delay = el.dataset.delay ? Number(el.dataset.delay) * 80 : 0;
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.05 });
+      setTimeout(() => {
+        el.classList.add('visible');
+        obs.observe(el);
+      }, delay + 800);
+      obs.observe(el);
+    });
+  </script>
+
+</body>
+</html>
