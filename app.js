@@ -6,7 +6,7 @@
 /* ================================================================
    KONSTANTA GLOBAL (harus di atas sebelum semua fungsi)
    ================================================================ */
-const STORAGE_KEY = 'portfolio_v3';
+const STORAGE_KEY = 'portfolio_v4';
 const CHIP_CYCLE  = ['chip-yellow', 'chip-green', 'chip-pink', 'chip-blue'];
 
 const CAT = {
@@ -31,7 +31,7 @@ function getData() {
       heroRole:        'Game Artist',
       heroCity:        'Tulungagung, ID',
       heroStatement:   'Saya bikin game yang terasa hidup',
-      aboutText:       'Saya mahasiswa Teknologi Game semester 5 yang terlalu excited soal game design. ✨ Saya peduli detail kecil, edge case yang sering dilupakan, dan bikin karya yang beneran bikin orang senang. 🎯',
+      aboutText:       'Halo, saya Muhamad Ihda Hadziqul Wafa, biasa dipanggil Wapa. Saya mahasiswa semester 5 Teknologi Game di Politeknik Elektronika Negeri Surabaya (PENS) yang berfokus pada 3D game art dan desain grafis. Saya mulai mendesain sejak 2022 dan terus belajar lewat proyek kampus, organisasi, dan kompetisi. Saya memakai Blender untuk membuat aset 3D, Photoshop dan Illustrator untuk desain visual, serta Figma untuk antarmuka. Saya juga mendalami sisi technical art, seperti memasang aset ke dalam game dan mengatur shader, supaya karya visual bisa tampil baik di dalam game.',
       contactLead:     'mau kolaborasi? Langsung kontak saya!',
       contactEmail:    'hywapaa@gmail.com',
       contactLinkedin: 'https://www.linkedin.com/in/ihdawafa/',
