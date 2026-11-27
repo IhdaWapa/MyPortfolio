@@ -415,6 +415,36 @@ body.is-admin .nav-contact-btn {
 }
 .chip-yellow-cv:hover { color: var(--ink); }
 
+/* Google Drive CTA button (below projects section) */
+.drive-cta-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1.5rem 1rem;
+}
+
+.drive-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .75rem 1.75rem;
+  background: var(--bg);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-sm);
+  font-family: var(--font-syne);
+  font-weight: 700;
+  font-size: .88rem;
+  letter-spacing: .05em;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform .15s var(--ease-spring), box-shadow .15s;
+}
+.drive-cta-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.drive-cta-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+
 /* ============================================================
    ABOUT (Reference Layout: 2-Col Upper + Categorized Skills Lower)
    ============================================================ */
