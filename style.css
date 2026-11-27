@@ -166,6 +166,14 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .nav-icon-btn:hover { transform: scale(1.1); opacity: .85; }
 .nav-icon-teal { background: var(--teal); }
 .nav-icon-pink { background: var(--pink); }
+.nav-icon-ig   { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+.chip-ig {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff;
+  border-color: #bc1888;
+}
+.chip-ig:hover { color: #fff; }
 
 .nav-contact-btn {
   display: none; /* Sembunyikan untuk umum */

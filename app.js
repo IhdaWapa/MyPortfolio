@@ -36,6 +36,7 @@ function getData() {
       contactEmail:    'hywapaa@gmail.com',
       contactLinkedin: 'https://www.linkedin.com/in/ihdawafa/',
       contactItch:     'https://ihdawafa.itch.io/',
+      contactInstagram:'https://www.instagram.com/wapatemola/',
       footerName:      'Wapa',
       avatar:          'images/pp-wapa.jpg',
     },
@@ -134,14 +135,18 @@ function applyProfile() {
   if (liLink)    liLink.href    = p.contactLinkedin;
   const itchLink  = document.getElementById('itchLink');
   if (itchLink)  itchLink.href  = p.contactItch;
+  const igLink    = document.getElementById('instagramLink');
+  if (igLink && p.contactInstagram) igLink.href = p.contactInstagram;
 
   // Nav icon buttons
   const navEmail = document.getElementById('navEmailBtn');
   const navLi    = document.getElementById('navLinkedinBtn');
   const navItch  = document.getElementById('navItchBtn');
+  const navIg    = document.getElementById('navInstagramBtn');
   if (navEmail) navEmail.href = 'mailto:' + p.contactEmail;
   if (navLi)    navLi.href    = p.contactLinkedin;
   if (navItch)  navItch.href  = p.contactItch;
+  if (navIg && p.contactInstagram) navIg.href = p.contactInstagram;
 
   // Avatars (otomatis ganti ke foto lokal pp-wapa.jpg jika link lama kedaluwarsa)
   if (!p.avatar || p.avatar.includes('licdn.com')) {
@@ -477,6 +482,7 @@ function openProfileModal() {
   document.getElementById('pEmail').value     = p.contactEmail    || '';
   document.getElementById('pLinkedin').value  = p.contactLinkedin || '';
   document.getElementById('pItch').value      = p.contactItch     || '';
+  document.getElementById('pInstagram').value = p.contactInstagram || '';
   document.getElementById('pAvatar').value    = p.avatar          || '';
   profileModal.classList.remove('hidden');
   document.getElementById('pName').focus();
@@ -499,6 +505,7 @@ profileForm?.addEventListener('submit', e => {
   p.contactEmail    = document.getElementById('pEmail').value.trim()     || p.contactEmail;
   p.contactLinkedin = document.getElementById('pLinkedin').value.trim()  || p.contactLinkedin;
   p.contactItch     = document.getElementById('pItch').value.trim()      || p.contactItch;
+  p.contactInstagram= document.getElementById('pInstagram').value.trim() || p.contactInstagram;
   p.avatar          = document.getElementById('pAvatar').value.trim();
   p.footerName      = p.heroName;
   saveData(STATE);
