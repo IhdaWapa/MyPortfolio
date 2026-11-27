@@ -44,7 +44,7 @@
       "title": "Dont Touch My Tree",
       "category": "game",
       "date": "Maret 2025",
-      "desc": "Game shooter yang bertujuan untuk menjaga pohon di kebun dari serangan monster",
+      "desc": "Game shooter yang bertujuan untuk menjaga pohon di kebun dari serangan monster\n\nKontribusi saya diproject ini adalah membuat environment dan mengatur shader dalam game",
       "link": "https://mr-mazoken.itch.io/dont-touch-my-tree",
       "image": "https://img.itch.zone/aW1hZ2UvNDMwMTEyOS8zMTc5ODE4OS5wbmc=/original/Zz8Vgq.png",
       "tags": [
@@ -74,6 +74,18 @@
       "tags": [
         "Unity",
         "2D"
+      ]
+    },
+    {
+      "title": "Mobil Karimun",
+      "category": "3d",
+      "date": "Juli 2025",
+      "desc": "Aku membuat 3D modelling mobil menggunakan blender",
+      "link": "https://www.instagram.com/p/DMCjN-EJ0n7/?img_index=1",
+      "image": "https://www.instagram.com/p/DMCjN-EJ0n7/?img_index=1",
+      "tags": [
+        "3D",
+        "Blender 3D"
       ]
     }
   ]
