@@ -593,6 +593,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (!projectModal.classList.contains('hidden')) closeProjectModal();
     if (!profileModal.classList.contains('hidden')) closeProfileModal();
+    if (!githubModal?.classList.contains('hidden')) closeGithubModal();
     if (editMode) setEditMode(false);
   }
   if (!e.target.matches('input, textarea, select, [contenteditable]')) {
@@ -608,11 +609,197 @@ document.addEventListener('keydown', e => {
 });
 
 /* ================================================================
+   REMOTE SYNC (data.json) & GITHUB AUTO-PUBLISH
+   ================================================================ */
+const GH_CONFIG_KEY = 'portfolio_gh_config';
+
+function showToast(message, type = 'success', duration = 5000) {
+  document.querySelector('.gh-toast')?.remove();
+  const el = document.createElement('div');
+  el.className = `gh-toast ${type}`;
+  el.textContent = message;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), duration);
+}
+
+function utf8ToBase64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  return btoa(bin);
+}
+
+function detectGithubRepo() {
+  const host = window.location.hostname;
+  if (!host.endsWith('.github.io')) return { owner: '', repo: '' };
+  const owner = host.replace('.github.io', '');
+  const seg = window.location.pathname.split('/').filter(Boolean)[0];
+  const repo = seg || `${owner}.github.io`;
+  return { owner, repo };
+}
+
+function loadGhConfig() {
+  try { return JSON.parse(localStorage.getItem(GH_CONFIG_KEY)) || {}; } catch { return {}; }
+}
+function saveGhConfig(cfg) {
+  try { localStorage.setItem(GH_CONFIG_KEY, JSON.stringify(cfg)); } catch {}
+}
+
+async function syncFromRemote() {
+  // Jika ada draft edit lokal yang belum dipublish, pakai draft lokal dulu
+  if (loadData()) return;
+  try {
+    const res = await fetch(`./data.json?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return;
+    const remote = await res.json();
+    if (remote && remote.profile && Array.isArray(remote.projects)) {
+      STATE = {
+        profile:  { ...getData().profile, ...remote.profile },
+        skills:   Array.isArray(remote.skills) ? remote.skills : STATE.skills,
+        projects: remote.projects,
+      };
+      if (activeTab >= STATE.projects.length) activeTab = 0;
+      applyProfile();
+      renderSkills();
+      renderTabs();
+      renderPanel();
+    }
+  } catch {
+    // Abaikan jika dibuka offline / file:// — tetap pakai default
+  }
+}
+
+const githubModal       = document.getElementById('githubModal');
+const githubModalClose  = document.getElementById('githubModalClose');
+const githubCancel      = document.getElementById('githubCancel');
+const githubForm        = document.getElementById('githubForm');
+const githubSettingsBtn = document.getElementById('githubSettingsBtn');
+const publishGithubBtn  = document.getElementById('publishGithubBtn');
+
+function openGithubModal() {
+  const cfg = loadGhConfig();
+  const detected = detectGithubRepo();
+  document.getElementById('ghOwner').value  = cfg.owner  || detected.owner || '';
+  document.getElementById('ghRepo').value   = cfg.repo   || detected.repo  || '';
+  document.getElementById('ghBranch').value = cfg.branch || 'main';
+  document.getElementById('ghToken').value  = cfg.token  || '';
+  githubModal.classList.remove('hidden');
+}
+
+function closeGithubModal() {
+  githubModal.classList.add('hidden');
+}
+
+githubSettingsBtn?.addEventListener('click', openGithubModal);
+githubModalClose?.addEventListener('click', closeGithubModal);
+githubCancel?.addEventListener('click', closeGithubModal);
+githubModal?.addEventListener('click', e => { if (e.target === githubModal) closeGithubModal(); });
+
+function flushInlineEdits() {
+  document.querySelectorAll('.editable').forEach(el => {
+    const field = el.dataset.field;
+    if (!field) return;
+    const val = el.textContent.trim();
+    if (field === 'footerName') {
+      STATE.profile.heroName   = val;
+      STATE.profile.footerName = val;
+    } else if (STATE.profile[field] !== undefined) {
+      STATE.profile[field] = val;
+    }
+  });
+  saveData(STATE);
+}
+
+async function publishToGithub() {
+  flushInlineEdits();
+  const cfg = loadGhConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    openGithubModal();
+    return;
+  }
+
+  const branch = cfg.branch || 'main';
+  const apiUrl = `https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/contents/data.json`;
+  const headers = {
+    Authorization: `Bearer ${cfg.token}`,
+    Accept: 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+
+  if (publishGithubBtn) {
+    publishGithubBtn.disabled = true;
+    publishGithubBtn.textContent = '⏳ Publishing…';
+  }
+
+  try {
+    // 1. Ambil SHA data.json terbaru (jika sudah ada di repo)
+    let sha = undefined;
+    const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers, cache: 'no-store' });
+    if (getRes.ok) {
+      const fileInfo = await getRes.json();
+      sha = fileInfo.sha;
+    } else if (getRes.status !== 404) {
+      const err = await getRes.json().catch(() => ({}));
+      throw new Error(err.message || `Gagal membaca repo (${getRes.status})`);
+    }
+
+    // 2. Commit data.json baru ke GitHub
+    const payload = {
+      message: 'Update portfolio data via web editor',
+      content: utf8ToBase64(JSON.stringify(STATE, null, 2) + '\n'),
+      branch,
+      ...(sha ? { sha } : {}),
+    };
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(payload),
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(err.message || `Gagal publish (${putRes.status})`);
+    }
+
+    // Matikan mode edit dulu, lalu hapus draft lokal karena data sudah tersimpan di GitHub
+    if (editMode) setEditMode(false);
+    localStorage.removeItem(STORAGE_KEY);
+    showToast('✅ Berhasil di-publish ke GitHub! Perubahan akan muncul di semua orang dalam ~30–60 detik.', 'success', 6500);
+  } catch (err) {
+    showToast(`❌ Gagal publish: ${err.message}. Cek pengaturan ⚙ GitHub.`, 'error', 7000);
+  } finally {
+    if (publishGithubBtn) {
+      publishGithubBtn.disabled = false;
+      publishGithubBtn.textContent = '🚀 Publish';
+    }
+  }
+}
+
+publishGithubBtn?.addEventListener('click', publishToGithub);
+
+githubForm?.addEventListener('submit', e => {
+  e.preventDefault();
+  const owner  = document.getElementById('ghOwner').value.trim();
+  const repo   = document.getElementById('ghRepo').value.trim();
+  const branch = document.getElementById('ghBranch').value.trim() || 'main';
+  const token  = document.getElementById('ghToken').value.trim();
+  if (!owner || !repo || !token) {
+    showToast('❌ Lengkapi Username, Nama Repo, dan Token GitHub.', 'error', 4000);
+    return;
+  }
+  saveGhConfig({ owner, repo, branch, token });
+  closeGithubModal();
+  publishToGithub();
+});
+
+/* ================================================================
    INIT
    ================================================================ */
 applyProfile();
 renderSkills();
 renderTabs();
 renderPanel();
+syncFromRemote();
 initReveal();
 initNavHighlight();

@@ -1,0 +1,80 @@
+{
+  "profile": {
+    "heroName": "Wapa",
+    "heroRole": "Game Artist",
+    "heroCity": "Tulungagung, ID",
+    "heroStatement": "Saya bikin game yang terasa hidup",
+    "aboutText": "Halo, saya Muhamad Ihda Hadziqul Wafa, biasa dipanggil Wapa. Saya mahasiswa semester 5 Teknologi Game di Politeknik Elektronika Negeri Surabaya (PENS) yang berfokus pada 3D game art dan desain grafis. Saya mulai mendesain sejak 2022 dan terus belajar lewat proyek kampus, organisasi, dan kompetisi. Saya memakai Blender untuk membuat aset 3D, Photoshop dan Illustrator untuk desain visual, serta Figma untuk antarmuka. Saya juga mendalami sisi technical art, seperti memasang aset ke dalam game dan mengatur shader, supaya karya visual bisa tampil baik di dalam game.",
+    "contactLead": "mau kolaborasi? Langsung kontak saya!",
+    "contactEmail": "hywapaa@gmail.com",
+    "contactLinkedin": "https://www.linkedin.com/in/ihdawafa/",
+    "contactItch": "https://ihdawafa.itch.io/",
+    "footerName": "Wapa",
+    "avatar": "images/pp-wapa.jpg"
+  },
+  "skills": [
+    {
+      "label": "Unity",
+      "emoji": "🎮",
+      "color": "chip-yellow"
+    },
+    {
+      "label": "Blender",
+      "emoji": "🧊",
+      "color": "chip-green"
+    },
+    {
+      "label": "Photoshop",
+      "emoji": "🎨",
+      "color": "chip-yellow"
+    },
+    {
+      "label": "Figma",
+      "emoji": "",
+      "color": "chip-pink"
+    },
+    {
+      "label": "Adobe Illustrator",
+      "emoji": "",
+      "color": "chip-yellow"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Dont Touch My Tree",
+      "category": "game",
+      "date": "Maret 2025",
+      "desc": "Game shooter yang bertujuan untuk menjaga pohon di kebun dari serangan monster",
+      "link": "https://mr-mazoken.itch.io/dont-touch-my-tree",
+      "image": "https://img.itch.zone/aW1hZ2UvNDMwMTEyOS8zMTc5ODE4OS5wbmc=/original/Zz8Vgq.png",
+      "tags": [
+        "Unity",
+        "3D"
+      ]
+    },
+    {
+      "title": "Betwen You and Me",
+      "category": "game",
+      "date": "September 2026",
+      "desc": "Game Platformer cerita kedua seorang dari dunia perbeda ingin pergi demi untuk bertemu belahan jiwa di ujung dunia.",
+      "link": "https://mr-mazoken.itch.io/between-you-and-me",
+      "image": "https://img.itch.zone/aW1hZ2UvNTAwMDgwNy8yOTk1NDExMy5wbmc=/original/qeJjss.png",
+      "tags": [
+        "Unity",
+        "2D pixel"
+      ]
+    },
+    {
+      "title": "Dukun Kantoran",
+      "category": "game",
+      "date": "September 2026",
+      "desc": "Bermain sebagai dukun yang kerjaannya meracik barang random",
+      "link": "https://salasyaeima.itch.io/dukun-kantoran",
+      "image": "https://img.itch.zone/aW1hZ2UvNDk3MTc2My8yOTc2MzUyMC5qcGVn/original/sp2SyW.jpeg",
+      "tags": [
+        "Unity",
+        "2D"
+      ]
+    }
+  ]
+}

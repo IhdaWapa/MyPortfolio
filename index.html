@@ -428,12 +428,50 @@ Saya mulai mendesain sejak 2022 dan terus belajar lewat proyek kampus, organisas
     </div>
   </div>
 
+  <!-- GitHub Publish Settings Modal -->
+  <div class="modal-overlay hidden" id="githubModal" role="dialog" aria-modal="true"
+    aria-labelledby="githubModalTitle">
+    <div class="modal">
+      <button class="modal-close" id="githubModalClose" aria-label="Tutup">✕</button>
+      <h3 id="githubModalTitle">🚀 Pengaturan Publish ke GitHub</h3>
+      <p class="gh-help-box">
+        Data ini hanya disimpan di browser kamu sendiri (tidak ikut ter-upload ke GitHub).<br />
+        Buat Token di <strong>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong>,
+        pilih repo portofoliomu, dan aktifkan izin <strong>Contents: Read and write</strong>.
+      </p>
+      <form id="githubForm" novalidate>
+        <div class="form-group">
+          <label for="ghOwner">Username GitHub (Owner)</label>
+          <input type="text" id="ghOwner" placeholder="contoh: ihdawafa" required />
+        </div>
+        <div class="form-group">
+          <label for="ghRepo">Nama Repository</label>
+          <input type="text" id="ghRepo" placeholder="contoh: ihdawafa.github.io" required />
+        </div>
+        <div class="form-group">
+          <label for="ghBranch">Branch</label>
+          <input type="text" id="ghBranch" placeholder="main" value="main" required />
+        </div>
+        <div class="form-group">
+          <label for="ghToken">GitHub Personal Access Token</label>
+          <input type="password" id="ghToken" placeholder="github_pat_... atau ghp_..." required />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-modal-cancel" id="githubCancel">Batal</button>
+          <button type="submit" class="btn-modal-save">Simpan &amp; Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Edit Toolbar -->
   <div class="edit-toolbar hidden edit-only" id="editToolbar" role="toolbar" aria-label="Edit toolbar">
     <span class="edit-toolbar-label">🛠 Mode Edit</span>
     <button class="toolbar-btn" id="editProfileBtn">Edit Profil</button>
+    <button class="toolbar-btn" id="githubSettingsBtn" title="Pengaturan GitHub Token">⚙ GitHub</button>
     <button class="toolbar-btn toolbar-btn-danger" id="clearStorageBtn">Reset</button>
     <button class="toolbar-btn toolbar-btn-save" id="saveEditBtn">✓ Selesai</button>
+    <button class="toolbar-btn toolbar-btn-publish" id="publishGithubBtn">🚀 Publish</button>
   </div>
 
   <script src="projects.js"></script>
